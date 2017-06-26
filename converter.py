@@ -1,9 +1,11 @@
 import subprocess
 import fnmatch
 import glob, os
+import sys
 
 matches = []
-for root, dirnames, filenames in os.walk("teste/01"):
+
+for root, dirnames, filenames in os.walk(str(sys.argv[1])):
     for filename in fnmatch.filter(filenames, '*.wav'):
         matches.append(os.path.join(root, filename))
 
@@ -15,7 +17,3 @@ for match in matches:
 	## Removes the original
 	#
 	os.remove(match)
-
-#wav = '20150917152033-4-sorriso-36091477.wav'
-#cmd = 'lame --preset insane %s' % wav
-#subprocess.call(cmd, shell=True)
